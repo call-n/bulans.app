@@ -8,3 +8,8 @@ This is the current state of the app and one big thing that i've left out is the
 - Axios
 
 The data file that has been excluded from public is all the images for items, runes, champions and so on. I will probably upload it in a zipped file to this repo.
+
+# some screenshots of the app
+![Player](/screenshots/player.png?raw=true)
+![Champs](/screenshots/allChamps.png?raw=true)
+![Search](/screenshots/search.png?raw=true)
