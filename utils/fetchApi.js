@@ -8,6 +8,15 @@ export const baseUrlOc1 = 'https://oc1.api.riotgames.com/';
 export const baseUrlEu = 'https://europe.api.riotgames.com/';
 
 export const fetchApi = async (url) => {
-    const { data } = await axios.get(url);
-    return data;
+
+    try {
+        const { data } = await axios.get(url);
+    
+        return data;
+      } catch (error) {
+        console.log(error.response);
+        
+        return {error: 'Player not found'};
+      }
+    
 }

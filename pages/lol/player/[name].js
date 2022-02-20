@@ -18,10 +18,12 @@ export default function Summoner({dataPlayer, dataRanked}) {
     const data1 = dataPlayer.names;
     const rank = dataRanked.ranked;
    
+    console.log(data1);
   return (
     <>
         <Header />
-        
+        {data1.id == null && <h1>Player not found</h1>}
+        {data1.id &&
         <Center py={6}>
             <Box
                 maxW={'700px'}
@@ -60,6 +62,7 @@ export default function Summoner({dataPlayer, dataRanked}) {
                 <Matchinfo name={data1.name} />
             </Box>
             </Center>
+}
         <Footer />
     </>
   )
