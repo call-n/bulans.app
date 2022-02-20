@@ -10,11 +10,15 @@ import {
     ModalBody,
     Input,
     Kbd,
-    Spacer
+    Spacer,
+    VStack,
+    Link,
   } from '@chakra-ui/react';
 
+import Image from 'next/image'
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { useState } from 'react';
+import { champsForSearch } from '../data/dataForSearch';
 
 export default function WithSubnavigation() {
     const { isOpen, onToggle, onOpen, onClose} = useDisclosure();
@@ -63,6 +67,41 @@ export default function WithSubnavigation() {
                                     }
                                 }}
                                 />
+                        </Flex>
+                        <Flex pt="5px" pb="5px">
+                            <VStack
+                            spacing={2}
+                            align='stretch'
+                            w="100%"
+                            >
+                            <Flex>
+                                {summoner.length > 0 && 
+                                <Flex>
+                                    <Text bg="cyan.400" pr="5px" pl="5px" borderRadius="2px" fontWeight="bold">
+                                        EUNE
+                                    </Text>
+                                    <Box pl="5px">
+                                        {summoner}
+                                    </Box> 
+                                </Flex>
+                                }
+                            </Flex>
+                            {
+                                summoner.length > 0 && 
+                                champsForSearch.filter(
+                                    champ => champ.id.toLowerCase().includes(summoner)
+                                ).map(champ => 
+                                    <Link key={champ.id} href={`/lol/champ/${champ.id}`}>
+                                        <Flex height="40px" flexDirection="row" p="5px">
+                                            <Box mr="5px">
+                                                <Image src={`/data/img/champion/${champ.id}.png`} width={'30'} height={'30'} alt={champ.id} />
+                                            </Box>
+                                            {champ.id}
+                                        </Flex>
+                                    </Link>
+                                    )
+                                }
+                            </VStack>
                         </Flex>
                     </ModalBody>
                     </ModalContent>

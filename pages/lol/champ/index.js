@@ -17,9 +17,6 @@ export default function Champions() {
         .then(res => setMatch(Object.keys(res.champion)))
     }, [url])
 
- 
-    console.log(match);
-
     if(match){
       content = 
     <>
