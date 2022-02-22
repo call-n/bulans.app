@@ -2,7 +2,7 @@ import { matches, matchInfo } from '../../../utils/fetchMatches';
 import { names } from '../../../utils/fetchName';
 
 const jsonExtract = (data, name) => {
-    console.log(data);
+    console.log(data.info.gameCreation);
         const lolMatch = data;
                 const participantsAll = data.info.participants;
 
@@ -16,7 +16,8 @@ const jsonExtract = (data, name) => {
                 
                 const gameinfo = [
                     data.info.gameMode,
-                    participants.win
+                    participants.win,
+                    data.info.gameCreation
                 ]
 
                 const perks = participants.perks.styles;
@@ -82,11 +83,17 @@ export default function handler(req, res) {
             data.forEach(match => {
                 matchInfo(match)
                 .then(data => {
-                    console.log(data);
                     arrayMatch.push(jsonExtract(data, name))
-                
+                    
                     if(arrayMatch.length == 10){
-                        Promise.all(arrayMatch).then(data => res.status(200).json({ matches: data }))
+                        Promise.all(arrayMatch)
+                        .then(data => {
+                            console.log(data);
+                            data.sort((a,b) => {
+                                return b.gamemode[2] - a.gamemode[2];
+                            })
+                            res.status(200).json({ matches: data })
+                        })
                     }
                 })
             }
