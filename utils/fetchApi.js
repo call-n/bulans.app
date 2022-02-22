@@ -9,7 +9,7 @@ export const baseUrlEu = 'https://europe.api.riotgames.com/';
 
 export const fetchApi = async (url) => {
 
-    try {
+  try {
         const { data } = await axios.get(url);
     
         return data;
