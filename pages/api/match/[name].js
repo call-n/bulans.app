@@ -89,6 +89,7 @@ export default function handler(req, res) {
                         Promise.all(arrayMatch)
                         .then(data => {
                             console.log(data);
+                            // sorts the matches by gamecreation, First comment :)
                             data.sort((a,b) => {
                                 return b.gamemode[2] - a.gamemode[2];
                             })
